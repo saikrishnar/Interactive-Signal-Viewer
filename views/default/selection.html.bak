@@ -1,0 +1,11 @@
+{{extend 'layoutnew.html'}}
+ <div class="jumbotron">
+    <div class="container">
+      <h3>Select the file to view</EM></h3>
+     
+      
+      <INPUT class="btn btn-primary btn-lg btn-block", value=" File1" , onclick="location.href='{{=URL(r=request,f='login')}}'"/>
+           <INPUT class="btn btn-primary btn-lg btn-block", value=" File2" , onclick="location.href='{{=URL(r=request,f='login')}}'"/>
+           <INPUT class="btn btn-primary btn-lg btn-block", value=" File3" , onclick="location.href='{{=URL(r=request,f='login')}}'"/>
+      </div>
+  </div>

@@ -83,7 +83,7 @@ use_janrain(auth, filename='private/janrain.key')
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
 
-auth.settings.login_next = URL('profile')
+auth.settings.login_next = URL('selection')
 auth.settings.profile_next = URL('thanks')
 
 
