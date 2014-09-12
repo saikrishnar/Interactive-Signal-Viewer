@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SleepAnalyser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       {{extend 'plugin_layouts/layouts/Customize.html'}}
+       {{include 'web2py_ajax.html'}}
+
+    <script src="{{=URL('static','newplot.js')}}"></script>
+
+
+
+
+		<script type="text/javascript">
+
+
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            renderTo: '#container',
+             type: 'spline',
+           options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 45,
+                depth: 70,
+                viewDistance: 100
+            },
+            borderColor: '#EBBA95',
+            borderWidth: 2,
+           
+            backgroundColor: '#FCFFC5',
+
+             plotBackgroundColor: {
+                linearGradient: [0, 0, 500, 500],
+                stops: [
+                    [0, 'rgb(255, 255, 255)'],
+                    [1, 'rgb(200, 200, 255)']
+                ]
+            },
+            fontFamily: 'serif',
+            zoomType: 'x',
+            panning: true,
+            panKey: 'shift',
+            marginLeft: 150,
+
+            marginBottom: 100
+        },
+
+        navigation: {
+            buttonOptions: {
+                theme: {
+                    'stroke-width': 1,
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#bada55'
+                        },
+                        select: {
+                            stroke: '#039',
+                            fill: '#bada55'
+                        }
+                    }
+                }
+            }
+        },
+
+        title: {
+            text: 'Amplitudes Plot of Two Channels'
+        },
+        subtitle: {
+            text: 'Drag to zoom. Hold Shift + drag to pan '
+        },
+        xAxis: {
+           allowDecimals: false
+
+        },
+        yAxis: {
+            title: {
+                text: 'Amplitude (Volts)'
+            },
+            min: 0,
+            minorGridLineWidth: 0,
+            gridLineWidth: 0,
+            alternateGridColor: null,
+
+
+        },
+               
+        tooltip: {
+            valueSuffix: 'Volts'
+        },
+        plotOptions: {
+            spline: {
+                lineWidth: 4,
+                states: {
+                    hover: {
+                        lineWidth: 5
+                    }
+                },
+                column: {
+                depth: 5,
+                groupZPadding: 15
+            },
+                marker: {
+                    enabled: false
+                },
+                pointInterval: 1, // one hour
+                pointStart: 0
+            }
+        },
+        series: [{
+            
+            name: 'Channel 1',
+            data: {{=data1}},
+               
+        }, {
+            name: 'Channel 2',
+            data: {{=data2}}}],
+        navigation: {
+            menuItemStyle: {
+                fontSize: '10px'
+            }
+        }
+    });
+});
+		</script>
+	</head>
+
+
+    <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Sleep Analyser</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div class="jumbotron">
+    <div class="container">
+
+      <h2>
+          Interactive Signal Viewer
+      </h2>
+          <div class="col-md-8 col-md-offset-2">
+<div id="container" style="min-width: 310px; height: 400px; margin: 30px auto"></div>
+            
+              <br>
+             
+     </div>
+
+      </div>
+  </div>
+
+ <p>
+               <h4>
+                 Task :   
+        </h4>  
+                 <h6>
+                     
+        Build a web page that has a login screen. The login screen must have username and password fields. On entering a correct username/password combination, the user is taken to a page where is displayed an interactive signal viewer. The signal viewer must show the data which is attached below. The graph must be scrollable and zoomable. Each row of the data consists of a single time step. The value of each row consists of 2 floating point numbers each representing the amplitude of one channel of the signal at that time. Both channels must be plotted and displayed.  </h6>
+              </p>
+     
+ 
+<script src="{{=URL('static','highcharts.js')}}"></script>
+<script src="{{=URL('static','exporting.js')}}"></script>
+
+</script>
+  </center></body>
+</html>

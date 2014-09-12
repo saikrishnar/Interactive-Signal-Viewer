@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Signal Viewer</title>
+     {{extend 'layoutnew.html'}}
+    <script src="{{=URL('static','newplot.js')}}"></script>
+    
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'spline',
+            zoomType: 'x',
+            panning: true,
+            panKey: 'shift'
+        },
+        title: {
+            text: 'Amplitudes Plot of Two Channels'
+        },
+        subtitle: {
+            text: 'Drag to zoom. Hold Shift + drag to pan '
+        },
+        xAxis: {
+           allowDecimals: false
+            
+        },
+        yAxis: {
+            title: {
+                text: 'Amplitude (Volts)'
+            },
+            min: 0,
+            minorGridLineWidth: 0,
+            gridLineWidth: 0,
+            alternateGridColor: null,
+           
+          
+        },
+        tooltip: {
+            valueSuffix: 'Hz'
+        },
+        plotOptions: {
+            spline: {
+                lineWidth: 4,
+                states: {
+                    hover: {
+                        lineWidth: 5
+                    }
+                },
+                marker: {
+                    enabled: false
+                },
+                pointInterval: 1, // one hour
+                pointStart: 0
+            }
+        },
+        series: [{
+            name: 'Channel 1',
+            data: {{=data1}}
+        }, {
+            name: 'Channel 2',
+            data: {{=data2}}}],
+        navigation: {
+            menuItemStyle: {
+                fontSize: '10px'
+            }
+        }
+    });
+});
+		</script>
+	</head>
+	<body>
+<script src="{{=URL('static','highcharts.js')}}"></script>
+<script src="{{=URL('static','exporting.js')}}"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      
+
+</script>
+  </center></body>
+</html>

@@ -1,0 +1,36 @@
+# coding: utf8
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import csv
+
+def plot(title='title',xlab='x',ylab='y',mode='plot',
+         data= []):
+    with open('private/test.csv', 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row[0])
+    
+    fig=Figure()
+    fig.set_facecolor('blue')
+    ax=fig.add_subplot(211)
+
+    legend=[]
+    keys=sorted(data)
+    for key in keys:
+        stream = data[key]
+        (x,y)=([],[])
+        for point in stream:
+            x.append(point[0])
+            y.append(point[1])
+        ell=ax.plot(x, y)
+        legend.append((ell,key))
+
+    if legend:
+        ax.legend([x for (x,y) in legend], [y for (x,y) in legend], 
+                  'upper right', shadow=True)
+
+    canvas=FigureCanvas(fig)
+    import cStringIO
+    stream=cStringIO.StringIO()
+    canvas.print_png(stream)
+    return stream.getvalue()

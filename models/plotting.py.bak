@@ -1,0 +1,12 @@
+import csv
+import os
+fp = os.path.join(request.folder,'private','test.csv')
+data1 = []
+data2 = []
+
+with open(fp, 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+           
+                data1.append(float((row[0])))
+                data2.append(float((row[1])))
